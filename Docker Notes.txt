@@ -1,0 +1,42 @@
+p. 39 Docker Daemon
+p. 66 Automatic Restart
+
+Docker Commands:
+
+sudo docker info - Information about docker
+
+sudo service docker (stop|start) - Stop/Start Docker entirely
+
+sudo docker start $container_name - Start up container
+sudo docker attach $container_name - 'Enter' container
+sudo docker exec $container_name bash - 'Enter' container with cmdline interface
+
+sudo docker rm $container_names - delete containers; separate names with space
+sudo docker rm -f $(docker ps -a -q) - delete all containers
+
+docker ps - Show runnning containers; -a to show all
+ 
+Docker run command (creates new container)
+	sudo docker run
+	-i - keep STDIN open even if not attached
+	-t - assign a psuedo-tty to the container/provides interactive shell
+	docker help run - shows all tags
+	-d - detached
+	/bin/sh -c "code in here" - runs deamonized container
+	ex. /bin/sh -c "while true; do echo hello world; sleep 1; done"
+
+Inside container
+	hostname - name of container
+
+Running sample website with nginx
+$ sudo docker run -d -p 80 --name website -v $PWD/website:/var/www/html/website jamtur01/nginx nginx
+
+
+Docker Information:
+Images store source code for containers
+	Source code eg:
+	• Add a file.
+	• Run a command.
+	• Open a port.
+
+Whenever you see "ubuntu" in command replace it with "debian"
