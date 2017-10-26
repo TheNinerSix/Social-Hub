@@ -3,9 +3,17 @@ https://docs.docker.com/engine/installation/linux/docker-ce/debian/#install-usin
 
 curl -fsSL get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
-sudo usermod -aG docker $your-user (optional)
-sudo docker build -t social/apache .
-sudo docker build -t social/phpmyadmin .
-sudo docker run --name sh-mysql -e MYSQL_ROOT_PASSWORD=pass123 -e MYSQL_DATABASE=social_hub -d hypriot/rpi-mysql
-sudo docker run --name myadmin -d -e MYSQL_USERNAME=root -e MYSQL_ROOT_PASSWORD=pass123 -e PMA_HOST= mysql --link sh-mysql:mysql social/phpmyadmin
-sudo docker run -d -it -p 80 --name apache -v $PWD/src:/var/www/html/ --link sh-mysql:mysql --link myadmin:phpmyadmin social/apache
+sudo usermod -aG docker $your-user (optional) 
+cd apache
+docker build -t social/apache .
+cd ..
+cd phpmyadmin
+docker build -t social/phpmyadmin .
+cd..
+docker run --name sh-mysql -v $PWD/db:/var/lib/mysql/social_hub/ -e MYSQL_ROOT_PASSWORD=pass123 -e MYSQL_DATABASE=social_hub -d hypriot/rpi-mysql
+docker run --name myadmin -d --link sh-mysql:mysql social/phpmyadmin
+docker run -d -it -p 80 --rm --name apache -v $PWD/src:/var/www/html/ --link sh-mysql:mysql --link myadmin:phpmyadmin social/apache
+
+
+sysbench --test=fileio --file-total-size=128M prepare
+sysbench --test=fileio --file-total-size=128M --file-test-mode=rndrw --init-rng=on --max-time=300 --max-requests=0 run
