@@ -1,5 +1,6 @@
- <?php
- session_start(); 
+<?php
+session_start();
+include ("checkPermission.php");
 include("config.php"); 
 $uid = $_SESSION['uid']; 
 include('navbar.php');
@@ -11,10 +12,10 @@ include('navbar.php');
           <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
-                            <?php
+<?php
 $sql = "SELECT * FROM user where user_id = '$uid'";
 $result = mysqli_query($db, $sql);
-$row = mysqli_fetch_assoc($result);
+$row = @mysqli_fetch_assoc($result);
 if(!is_null($row['user_pic'])) {
 	echo '<img class="text-center" src=.\uploads\\' . $uid . '\\' .$row['user_pic'] . ' height="180" width="180">';
 } else {
@@ -25,7 +26,7 @@ if(!is_null($row['user_pic'])) {
           </div>
           <div class="row">
              <div class="col-md-6">
-              <form action="profile_update.php" method="post" enctype="multipart/form-data" class="text-center">
+              <form action="upload_action.php" method="post" enctype="multipart/form-data" class="text-center">
                 <input class="form-control" type="file" name="file" id="file" aria-describedby="fileHelp">
 				</div>
 			<div class="col-md-3">
@@ -35,38 +36,58 @@ if(!is_null($row['user_pic'])) {
         </div>
         <div class="col-md-4">
           <h3>Edit Profile</h3>
-          <form id="form" name="form" method="post" action="profile_update.php">
+          <form id="form" name="form" method="post" action="">
             <div class="form-group"> 
 			 <div class="form-row">
 			   <div class="col-md-6">
 				<label>Current Work: </label>
-              <input class="form-control" type="text" name="curWork" placeholder="<?php $row['user_currentWork']?>">
+              <input class="form-control" type="text" name="curWork" placeholder="<?php $row['currentWork']?>">
 			  </div>
 			                <div class="col-md-6">
 			  	<label>Previous Work: </label>
-              <input class="form-control" type="text" name="prevWork" placeholder="<?php $row['user_prevWork']?>">
+              <input class="form-control" type="text" name="prevWork" placeholder="<?php $row['prevWork']?>">
 			  </div>
 			  </div>
               <br> 
 			  			 <div class="form-row">
 			   <div class="col-md-6">
 			  <label>Current Live At: </label>
-              <input class="form-control" type="text" name="curtown" placeholder="<?php $row['user_currentLivingTown']?>">
+              <input class="form-control" type="text" name="curAdd" placeholder="<?php $row['currentAddress']?>">
 			  			  </div>
 			                <div class="col-md-6">
-			  <label>HomeTown: </label>
-              <input class="form-control" type="text" name="hometown" placeholder="<?php $row['user_hometown']?>">
+			  <label>Previous Live At: </label>
+              <input class="form-control" type="text" name="prevAdd" placeholder="<?php $row['prevAddress']?>">
 			  			  </div>
 			  </div>
               <br> <label>Phone Number: </label>
-              <input class="form-control" type="text" name="phoneno" placeholder="<?php $row['user_phoneNum']?>">
-              <br> <label>Gender: </label><select class="form-control" name="gender" form="form"><option value="Female">Female</option><option value="Male">Male</option><option value="Other">Other</option></select>
+                <input class="form-control" type="text" name="phoneno" ><?php $row['phoneNum']?></input>
               <br> <label>About me: </label>
-			  <textarea class="form-control" name="aboutme" form="form"><?php $row['user_about']?></textarea>
+			  <textarea class="form-control" name="aboutme" form="form"><?php $row['bio']?></textarea>
               <br>
-              <input class="btn btn-primary btn-block" type="submit" name="submit" value="Submit"> </div>
+              <input class="btn btn-primary btn-block" type="submit" name="updateProfile" value="Submit"> </div>
           </form>
         </div>
       </div>
     </div>
         </div>
+
+<?php
+if(isset($_POST['updateProfile'])) {
+    $uid = $_SESSION['uid'];
+    $curAdd = $_POST['curAdd'];
+    $curWork = $_POST['curWork'];
+    $prevWork = $_POST['prevWork'];
+    $prevAdd = $_POST['prevAdd'];
+    $phoneno = $_POST['phoneno'];
+    $about = $_POST['aboutme'];
+
+    $sql = "UPDATE aboutme SET currentAddress = '$curAdd', prevAddress = '$prevAdd',currentWork = '$curWork', prevWork = '$prevWork', phoneNum = '$phoneno', bio = '$about' WHERE userID = '$uid'";
+    if(mysqli_query($db, $sql)) {
+        echo "OK";
+    } else {
+        echo "Fail!";
+    }
+}
+
+
+?>

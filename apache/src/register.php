@@ -18,8 +18,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <form id="form" name="form" method="post" action="register_action.php">
           <div class="form-group">
-<label>Email: </label><input class="form-control" type="email" name="email" placeholder="Enter email"/> <br>
-<label>Name: </label><input class="form-control"  type="text" name="username" placeholder="Enter your name"/> <br>
+            <label>Email: </label><input class="form-control" type="email" name="email" placeholder="Enter email"/>
+              <div class="form-row">
+                  <div class="col-md-6">
+<label>First Name: </label><input class="form-control"  type="text" name="fname" placeholder="Enter your first name"/>
+                  </div>
+                  <div class="col-md-6">
+<label>Last Name: </label><input class="form-control"  type="text" name="lname" placeholder="Enter your last name"/> <br>
+                  </div>
+              </div>
 <label>Password: </label><input class="form-control"  type="password" name="password1" placeholder="Enter your password" /> <br>
 <label>Re-Enter Password: </label><input class="form-control"  type="password" name="password2" placeholder="Enter your password once again" /> <br>
 <label>Gender: </label><select class="form-control" name="gender" form="form"><option value="Female">Female</option><option value="Male">Male</option><option value="Other">Other</option></select> <br>
