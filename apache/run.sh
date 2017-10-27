@@ -1,5 +1,5 @@
 #!/bin/bash
-chown www-data:www-data /src -R
+chown www-data:www-data /src/ -R
 
 if [ "$ALLOW_OVERRIDE" = "**False**" ]; then
     unset ALLOW_OVERRIDE

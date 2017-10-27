@@ -1,5 +1,4 @@
-<?php 
-session_start(); 
+<?php session_start(); 
 include("config.php");
 $email = $_POST['email'];
 $password1 = $_POST['password1'];
@@ -11,9 +10,9 @@ $row = @mysqli_fetch_row($result);
 //Check null
 if($email != null && $password1 != null && $row[1] == $email && $row[2] == sha1($email . $password1))
 {
-		$uid = $row[2];
+		$uid = $row[0];
         $_SESSION['uid'] = $uid;
-        echo 'Welcome back!';
+        echo 'Welcome back!' . $uid;
 		echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
 }
 else
