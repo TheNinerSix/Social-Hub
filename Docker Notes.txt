@@ -9,7 +9,7 @@ sudo service docker (stop|start) - Stop/Start Docker entirely
 
 sudo docker start $container_name - Start up container
 sudo docker attach $container_name - 'Enter' container
-sudo docker exec $container_name bash - 'Enter' container with cmdline interface
+sudo docker exec -ti $container_name bash - 'Enter' container with cmdline interface
 
 sudo docker rm $container_names - delete containers; separate names with space
 sudo docker rm -f $(docker ps -a -q) - delete all containers
@@ -27,10 +27,6 @@ Docker run command (creates new container)
 
 Inside container
 	hostname - name of container
-
-Running sample website with nginx
-$ sudo docker run -d -p 80 --name website -v $PWD/website:/var/www/html/website jamtur01/nginx nginx
-
 
 Docker Information:
 Images store source code for containers
