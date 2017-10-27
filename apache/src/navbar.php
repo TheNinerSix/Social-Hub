@@ -12,7 +12,8 @@
 echo '<li class="nav-item"><form name="form" method="post" action="login_action.php"></li><input class="form-control" aria-describedby="emailHelp" type="text" name="email" placeholder="Enter email" /></li><input class="form-control" type="password" name="password1" placeholder="Enter passowrd" /><li class="nav-item"><input class="btn btn-primary btn-block" type="submit" name="button" value="Login" /></form></li>';
 } else {
 //Messages
-		$sql = "SELECT * FROM message where msg_relatedId = '$uid' AND msg_read = '0'";
+	$uid = $_SESSION['uid']; 
+		$sql = "SELECT  * FROM message where relatedID = '$uid' ORDER BY time DESC LIMIT 1";
 		$result = mysqli_query($db, $sql);
 		$total_results = mysqli_num_rows($result);
 echo '<li class="nav-item dropdown">
@@ -25,11 +26,11 @@ echo '<li class="nav-item dropdown">
 
 		while($row = mysqli_fetch_assoc($result)) {
 			echo '<div class="dropdown-divider"></div>';
-			echo '<a class="dropdown-item" href="message.php?='. $row['msg_id'] .'">';
-			$temp = $row['msg_creatorId'];
-            echo '<strong href="profile.php?=">'. mysqli_fetch_row(mysqli_query($db, "SELECT user_name FROM user where user_id = '$temp'"))[0] .'</strong>';
-            echo '<span class="small float-right text-muted">' . $row['msg_time'] .'</span>';
-			echo '<div class="dropdown-message">' .$row['msg_content'] . '</div></a>';
+			echo '<a class="dropdown-item" href="message.php?mid='. $row['msgID'] .'">';
+			$temp = $row['creatorID'];
+            echo '<strong href="profile.php?=">'. mysqli_fetch_row(mysqli_query($db, "SELECT CONCAT_WS(\" \", firstName, lastName) AS fullName FROM user where userID = '$temp'"))[0] .'</strong>';
+            echo '<span class="small float-right text-muted">' . $row['time'] .'</span><br><br>';
+			echo '<div class="dropdown-message">' .$row['content'] . '</div></a>';
 		}
 echo '<div class="dropdown-divider"></div><a class="dropdown-item small" href="#">View all messages</a></div></li>';
 
@@ -70,3 +71,8 @@ echo '<li class="nav-item"><a class="nav-link" data-toggle="modal" data-target="
         </div>
       </div>
     </div>
+ <!-- Bootstrap core JavaScript-->
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
