@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .badge-notify{
    background:red;
    position:relative;
@@ -10,3 +11,17 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+=======
+.badge-notify{
+   background:red;
+   position:relative;
+   top: -10px;
+   left: -5px;
+}
+
+.dropdown-menu span.text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+>>>>>>> master
