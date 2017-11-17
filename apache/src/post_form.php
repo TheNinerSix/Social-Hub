@@ -1,8 +1,15 @@
-<h1>Test POST</h1>
-<form id="form" name="form" method="post" action="">
-    <textarea class="form-control" name="content" placeholder="Enter Here"></textarea>
-    <input class="btn btn-primary btn-block" type="submit" name="submit" value="Submit"> </div>
-</form>
+ <form id="postForm" name="postForm" action="" method="post">
+            <div class="form-group" style="margin-bottom: 2px;">
+                <textarea name="postContent"class="form-control" placeholder="What's on your mind?" rows="3" id="post" required=""></textarea>
+            </div>
+            <div style="float: right;">
+                <button type="submit" class="btn btn-secondary" style="margin-top: 8px; margin-left: 15px;">
+                    Attach Picture
+                </button>
+                <button name="postSubmit" type="submit" class="btn btn-primary" style="margin-top: 8px; margin-left: 15px;">Post
+                </button>
+            </div>
+ </form>
 <?php
 /**
  * Created by PhpStorm.
@@ -10,15 +17,16 @@
  * Date: 10/27/2017
  * Time: 11:34 AM
  */
-if(isset($_POST['submit'])) {
-    $content = $_POST['content'];
+if(isset($_POST['postSubmit'])) {
+    $content = $_POST['postContent'];
     $uid = $_SESSION['uid'];
     $pid = sha1(uniqid() . time());
-    $sql = "insert into post (postID, userID, content, numOfLikes) values ('$pid' , '$uid', '$content', 0 )";
+    $time = time();
+    $sql = "insert into post (postID, userID, content, numOfLikes, createdTime) values ('$pid' , '$uid', '$content', 0, '$time')";
     if(mysqli_query($db, $sql)) {
-        echo 'done!';
+        echo '<meta http-equiv=REFRESH CONTENT=0;url=index.php>';
     } else {
-        echo 'fail!';
+
     }
 }
 
