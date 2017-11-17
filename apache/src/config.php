@@ -1,7 +1,7 @@
 <?php
 //error_reporting(0);
 //Mysql connect
-$db = mysqli_connect("localhost", "root", "", "socialhub");
+$db = mysqli_connect("172.17.0.2", "root", "pass123", "socialhub");
 if (!$db) {
     echo "Error: Unable to connect to MySQL." . PHP_EOL;
     echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
