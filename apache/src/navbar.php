@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <style type="text/css">
     .search-box{
         width: 500px;
@@ -53,7 +51,7 @@
         });
     });
 </script>
->>>>>>> V3
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <a class="navbar-brand" href="index.php">Social Hub</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -63,10 +61,7 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
 
         <?php
-<<<<<<< HEAD
 
-=======
->>>>>>> V3
         if (!isset($_SESSION['uid'])) {
             echo '<ul class="navbar-nav ml-auto"><li class="nav-item dropdown">';
             echo '<li class="nav-item"><form name="form" method="post" action="login_action.php"></li><input class="form-control" aria-describedby="emailHelp" type="text" name="email" placeholder="Enter email" required/></li><input class="form-control" type="password" name="password1" placeholder="Enter passowrd" required/><li class="nav-item"><input class="btn btn-primary btn-block" type="submit" name="button" value="Login" /></form></li>';
@@ -74,13 +69,10 @@
             $uid = $_SESSION['uid'];
             //search
             echo '<form class="col-md-6" name="searchForm" method="post" action="search.php" ><div class="custom-search-input"><div class="input-group">';
-<<<<<<< HEAD
-            echo '<input type="text" class="form-control input-lg" name="keyword"><span class="input-group-btn"><button class="btn btn-info btn-lg" name="searchSubmit" type="submit"><i class="fa fa-search"></i></button></span></form>';
-            echo '</div></div>';
-=======
+
             echo '<div class="search-box"><input type="text" class="form-control input-lg" name="keyword" autocomplete="off"><div class="result" id="result"></div></div><span class="input-group-btn"><button class="btn btn-info btn-lg" name="searchSubmit" type="submit"><i class="fa fa-search"></i></button></span>';
             echo '</div></div></form>';
->>>>>>> V3
+
             echo '<ul class="navbar-nav ml-auto"><li class="nav-item dropdown">';
 //Messages
 
@@ -116,11 +108,7 @@
         </ul>
     </div>
 </nav>
-<<<<<<< HEAD
-<br>
-=======
 
->>>>>>> V3
 <br>
 <br>
 <br>
