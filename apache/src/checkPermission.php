@@ -8,6 +8,7 @@
 
 include("config.php");
 if(!isset($_SESSION['uid'])) {
-    header( 'Location: ./index.php' );
+    header('Loaction:index.php');
+    exit();
 }
 ?>
