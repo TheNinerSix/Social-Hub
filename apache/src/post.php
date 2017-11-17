@@ -1,5 +1,9 @@
 
 <?php
+<<<<<<< HEAD
+=======
+include("checkPermission.php");
+>>>>>>> V3
 echo '
 <div class="card" style="margin: 10px 0px;">
     <div class="card-body">

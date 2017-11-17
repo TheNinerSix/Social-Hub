@@ -42,7 +42,10 @@ if(isset($_POST['reportSubmit'])) {
     $postID = $_POST['reportID'];
     $sql = "insert into report (postID, content,reportBy) values ('$postID', '$content','$uid')";
     if(mysqli_query($db, $sql)) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> V3
     } else {
         echo '
         <div class="alert alert-danger" role="alert">

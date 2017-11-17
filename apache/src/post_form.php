@@ -22,7 +22,11 @@ if(isset($_POST['postSubmit'])) {
     $uid = $_SESSION['uid'];
     $pid = sha1(uniqid() . time());
     $time = time();
+<<<<<<< HEAD
     $sql = "insert into post (postID, userID, content, numOfLikes, createdTime) values ('$pid' , '$uid', '$content', 0, '$time')";
+=======
+    $sql = "insert into post (postID, userID, content, createdTime) values ('$pid' , '$uid', '$content', '$time')";
+>>>>>>> V3
     if(mysqli_query($db, $sql)) {
         echo '<meta http-equiv=REFRESH CONTENT=0;url=index.php>';
     } else {

@@ -32,6 +32,10 @@ $fullname = $user['firstName'] . ' ' . $user['lastName'];
         <title>Page Title</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="css/socialhub.css"/>
+<<<<<<< HEAD
+=======
+
+>>>>>>> V3
     </head>
 
     <body class="container">
@@ -128,12 +132,17 @@ $fullname = $user['firstName'] . ' ' . $user['lastName'];
                 include ('post.php');
             }
             ?>
+<<<<<<< HEAD
 
 
         </div>
 
     </div>
 
+=======
+        </div>
+    </div>
+>>>>>>> V3
     </body>
     </html>
     <div class="modal fade" id="uploadProfilePicModal" tabindex="-1" role="dialog"
