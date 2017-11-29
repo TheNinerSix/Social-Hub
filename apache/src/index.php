@@ -1,7 +1,3 @@
-<html>
-<head>
-</head>
-<body>
 <?php
 session_start(); 
 include("config.php");
@@ -14,5 +10,3 @@ if(!isset($_SESSION['uid'])) {
 }
 		 
 ?>
-</body>
-</html>

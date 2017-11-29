@@ -12,7 +12,7 @@ sudo docker build -t social/phpmyadmin .
 Run Containers (First Time):
 sudo docker run --name sh-mysql -d -e MYSQL_ROOT_PASSWORD=pass123 -e MYSQL_DATABASE=social_hub hypriot/rpi-mysql
 sudo docker run --name myadmin -d -e MYSQL_ROOT_PASSWORD=pass123 -e MYSQL_DATABASE=social_hub -e PMA_HOST=mysql --link sh-mysql:mysql social/phpmyadmin
-sudo docker run --name apache -d -it -p 32768:80  -v /home/pi/Social-Hub/apache/src/:/var/www/html/ --link sh-mysql:mysql --link myadmin:phpmyadmin social/apache
+sudo docker run --name apache -d -it -p 32768:80  -v /home/pi/Social-Hub/apache/src/:/var/www/html/ --link sh-mysql:mysql social/apache
 
 Restart Containers:
 sudo docker start {phpmyadmin sh-mysql apache}
