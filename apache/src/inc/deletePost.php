@@ -1,6 +1,17 @@
-<script>
+
+
+
+<?php
+/**
+ * Created by PhpStorm.
+ * User: ChunHei
+ * Date: 11/3/2017
+ * Time: 9:59 AM
+ */
+if(isset($_SESSION['admin']) && $_SESSION['admin']) {
+    echo '<script>
     $(document).on("click", ".open-deleteDialog", function () {
-        var myDeleteID = $(this).data('id');
+        var myDeleteID = $(this).data(\'id\');
         $(".modal-body #deleteID").val( myDeleteID );
     });
 </script>
@@ -16,7 +27,8 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body text-center">
+                <h4>Are you sure to delete the post?</h4>
                 <form action="" method="post">
                     <input name="deleteID" id="deleteID" type="hidden">
             </div>
@@ -26,25 +38,15 @@
             </div>
         </div>
     </div>
-</div>
-
-
-<?php
-/**
- * Created by PhpStorm.
- * User: ChunHei
- * Date: 11/3/2017
- * Time: 9:59 AM
- */
-if(isset($_POST['deleteID'])) {
-    $postID = $_POST['deleteID'];
-    $sql = "Delete From post where postID = '$postID'";
+</div>';
+    if(isset($_POST['deleteID'])) {
+        $postID = $_POST['deleteID'];
+        $sql = "Delete From post where postID = '$postID'";
         if(mysqli_query($db, $sql)) {
             echo '<meta http-equiv=REFRESH CONTENT=0;>';
         }
-
-
-
+    }
 }
+
 
 ?>

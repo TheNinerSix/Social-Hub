@@ -40,17 +40,18 @@
 if(isset($_POST['reportSubmit'])) {
     $content = $_POST['reportContent'];
     $postID = $_POST['reportID'];
-    $sql = "insert into report (postID, content,reportBy) values ('$postID', '$content','$uid')";
-    if(mysqli_query($db, $sql)) {
-<<<<<<< HEAD
-
-=======
->>>>>>> V3
-    } else {
-        echo '
+    $time = time();
+    $sql = "SELECT * FROM report where reportBY = '$uid' AND postID = '$postID'";
+    if(mysqli_num_rows(mysqli_query($db, $sql)) <= 0) {
+        $sql = "insert into report (postID, content,reportBy, reportTime) values ('$postID', '$content','$uid', '$time')";
+        if(mysqli_query($db, $sql)) {
+        } else {
+            echo '
         <div class="alert alert-danger" role="alert">
   <strong>Oh snap!</strong> Failed to report! Please contact the admin.
 </div>';
+        }
     }
+
 }
 ?>

@@ -22,12 +22,27 @@ if($email != null && $password1 != null && $row[1] == $email && $row[2] == sha1(
         if(@mysqli_num_rows($result) > 0) {
             $_SESSION['admin'] = TRUE;
         }
-        echo 'Welcome back!' . $uid;
-		echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
+		echo '
+<body>
+<div><img src="img/loading.gif" style="position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 500px;
+   height: 500px;
+   margin-top: -250px; 
+   margin-left: -250px;"></div>
+<meta http-equiv=REFRESH CONTENT=1;url=index.php>
+</body>
+';
 }
 else
 {
-        echo 'Wrong password or user does not exits!';
+        echo '<div style="position: absolute;
+   top: 50%;
+   width: 100%;
+   height: 500px;
+   margin-top: -250px; 
+"><div class="alert alert-danger text-center" role="alert">Wrong password or user does not exits!</div></div>';
        echo '<meta http-equiv=REFRESH CONTENT=1;url=index.php>';
 }
 }
